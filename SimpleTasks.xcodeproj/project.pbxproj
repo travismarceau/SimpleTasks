@@ -9,19 +9,22 @@
 /* Begin PBXBuildFile section */
 		1CD7440A1EF9E48600A44ABD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD744091EF9E48600A44ABD /* AppDelegate.swift */; };
 		1CD7440C1EF9E48600A44ABD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD7440B1EF9E48600A44ABD /* ViewController.swift */; };
-		1CD7440F1EF9E48600A44ABD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD7440D1EF9E48600A44ABD /* Main.storyboard */; };
 		1CD744111EF9E48600A44ABD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD744101EF9E48600A44ABD /* Assets.xcassets */; };
 		1CD744141EF9E48600A44ABD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD744121EF9E48600A44ABD /* LaunchScreen.storyboard */; };
+		8B8AC26C946AED1BFFAEADC4 /* Pods_SimpleTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D312115CF8EB4ACE74BAA3DF /* Pods_SimpleTasks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C55D62E1EF9F745009A0BF8 /* SimpleTasks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleTasks.entitlements; sourceTree = "<group>"; };
 		1CD744061EF9E48600A44ABD /* SimpleTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD744091EF9E48600A44ABD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CD7440B1EF9E48600A44ABD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1CD7440E1EF9E48600A44ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1CD744101EF9E48600A44ABD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CD744131EF9E48600A44ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1CD744151EF9E48600A44ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AB49222E0C16E85F728293D /* Pods-SimpleTasks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleTasks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleTasks/Pods-SimpleTasks.debug.xcconfig"; sourceTree = "<group>"; };
+		8A04C01E22AE139300877473 /* Pods-SimpleTasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleTasks.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleTasks/Pods-SimpleTasks.release.xcconfig"; sourceTree = "<group>"; };
+		D312115CF8EB4ACE74BAA3DF /* Pods_SimpleTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +32,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B8AC26C946AED1BFFAEADC4 /* Pods_SimpleTasks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A657C6FADFDF75BE543B9B7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3AB49222E0C16E85F728293D /* Pods-SimpleTasks.debug.xcconfig */,
+				8A04C01E22AE139300877473 /* Pods-SimpleTasks.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		1CD743FD1EF9E48600A44ABD = {
 			isa = PBXGroup;
 			children = (
 				1CD744081EF9E48600A44ABD /* SimpleTasks */,
 				1CD744071EF9E48600A44ABD /* Products */,
+				0A657C6FADFDF75BE543B9B7 /* Pods */,
+				AEC03C7B504AC77963CC8125 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +69,22 @@
 		1CD744081EF9E48600A44ABD /* SimpleTasks */ = {
 			isa = PBXGroup;
 			children = (
+				1C55D62E1EF9F745009A0BF8 /* SimpleTasks.entitlements */,
 				1CD744091EF9E48600A44ABD /* AppDelegate.swift */,
 				1CD7440B1EF9E48600A44ABD /* ViewController.swift */,
-				1CD7440D1EF9E48600A44ABD /* Main.storyboard */,
 				1CD744101EF9E48600A44ABD /* Assets.xcassets */,
 				1CD744121EF9E48600A44ABD /* LaunchScreen.storyboard */,
 				1CD744151EF9E48600A44ABD /* Info.plist */,
 			);
 			path = SimpleTasks;
+			sourceTree = "<group>";
+		};
+		AEC03C7B504AC77963CC8125 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D312115CF8EB4ACE74BAA3DF /* Pods_SimpleTasks.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +94,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1CD744181EF9E48600A44ABD /* Build configuration list for PBXNativeTarget "SimpleTasks" */;
 			buildPhases = (
+				DB1D8CB8A2E52CCECC37971D /* [CP] Check Pods Manifest.lock */,
 				1CD744021EF9E48600A44ABD /* Sources */,
 				1CD744031EF9E48600A44ABD /* Frameworks */,
 				1CD744041EF9E48600A44ABD /* Resources */,
+				2F1B1DA852B1C9BFD254DAFD /* [CP] Embed Pods Frameworks */,
+				30A972A22481C94C9CD511CA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,7 +122,13 @@
 				TargetAttributes = {
 					1CD744051EF9E48600A44ABD = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = QS3TP8582Y;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -125,11 +157,58 @@
 			files = (
 				1CD744141EF9E48600A44ABD /* LaunchScreen.storyboard in Resources */,
 				1CD744111EF9E48600A44ABD /* Assets.xcassets in Resources */,
-				1CD7440F1EF9E48600A44ABD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F1B1DA852B1C9BFD254DAFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleTasks/Pods-SimpleTasks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30A972A22481C94C9CD511CA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleTasks/Pods-SimpleTasks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB1D8CB8A2E52CCECC37971D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1CD744021EF9E48600A44ABD /* Sources */ = {
@@ -144,14 +223,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1CD7440D1EF9E48600A44ABD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1CD7440E1EF9E48600A44ABD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1CD744121EF9E48600A44ABD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -260,8 +331,11 @@
 		};
 		1CD744191EF9E48600A44ABD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AB49222E0C16E85F728293D /* Pods-SimpleTasks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SimpleTasks/SimpleTasks.entitlements;
+				DEVELOPMENT_TEAM = QS3TP8582Y;
 				INFOPLIST_FILE = SimpleTasks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = travisMarceau.SimpleTasks;
@@ -272,8 +346,11 @@
 		};
 		1CD7441A1EF9E48600A44ABD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A04C01E22AE139300877473 /* Pods-SimpleTasks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SimpleTasks/SimpleTasks.entitlements;
+				DEVELOPMENT_TEAM = QS3TP8582Y;
 				INFOPLIST_FILE = SimpleTasks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = travisMarceau.SimpleTasks;
@@ -301,6 +378,7 @@
 				1CD7441A1EF9E48600A44ABD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
