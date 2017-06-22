@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  SimpleTasks
-//
-//  Created by Travis Marceau on 6/20/17.
-//  Copyright © 2017 travisMarceau. All rights reserved.
-//
-//  Clear Simulator cache: xcrun simctl erase all
 
 import UIKit
 import RealmSwift
@@ -25,9 +17,13 @@ final class TaskList: Object {
 final class Task: Object {
     dynamic var text = ""
     dynamic var completed = false
+    dynamic var realDate = Date()
+    dynamic var priority = ""
 }
 
-class ViewController: UITableViewController {
+class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     var items = List<Task>()
     
@@ -68,8 +64,8 @@ class ViewController: UITableViewController {
                         if !self.realm.isInWriteTransaction {
                             try! self.realm.write {
                                 let list = TaskList()
-                                list.id = "000002"
-                                list.text = "Next List"
+                                list.id = "000001"
+                                list.text = "Base List"
                                 self.realm.add(list)
                             }
                             updateList()
@@ -80,7 +76,7 @@ class ViewController: UITableViewController {
                 }
                 updateList()
                 
-                // Notify us when Realm changes
+                // update view on realm change
                 self.notificationToken = self.realm.addNotificationBlock { _ in
                     updateList()
                 }
@@ -99,26 +95,67 @@ class ViewController: UITableViewController {
     }
     
     func setupUI() {
-        title = "My Tasks"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     //MARK: UITableView
     
-    override func tableView(_ tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let item = items[indexPath.row]
-        cell.textLabel?.text = item.text
-        cell.textLabel?.alpha = item.completed ? 0.5 : 1
-        return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
+            
+            let item = items[indexPath.row]
+            cell.updateUI(task: item)
+            return cell
+        } else {
+            
+            return UITableViewCell()
+        }
     }
     
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        try! items.realm?.write {
+            items.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            try! realm.write {
+                let item = items[indexPath.row]
+                realm.delete(item)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        
+        performSegue(withIdentifier: "DetailVC", sender: item)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? DetailVC {
+            
+            if let taskSender = sender as? Task {
+                destination.task = taskSender
+            }
+            
+        }
+        
+    }
+    
+    @IBAction func addButton(_ sender: Any) {
+        add()
+    }
+    
+    
+    // alert for new entry and write directly to server
     func add() {
         let alertController = UIAlertController(title: "New Task", message: "Enter Task Name", preferredStyle: .alert)
         var alertTextField: UITextField!
@@ -133,13 +170,9 @@ class ViewController: UITableViewController {
             try! items.realm?.write {
                 items.insert(Task(value: ["text": text]), at: items.filter("completed = false").count)
             }
-            
-//            self.items.append(Task(value: ["text": text]))
-//            self.tableView.reloadData()
         })
         present(alertController, animated: true, completion: nil)
     }
-    
     
 }
 
