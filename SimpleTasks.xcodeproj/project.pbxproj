@@ -71,13 +71,6 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		1C55D6371EFB97FE009A0BF8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		1CD743FD1EF9E48600A44ABD = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				1C55D65A1EFBB66A009A0BF8 /* Main.storyboard */,
-				1C55D6371EFB97FE009A0BF8 /* Model */,
 				1C55D6361EFB97F5009A0BF8 /* View */,
 				1C55D6351EFB97BA009A0BF8 /* Controller */,
 				1C55D62E1EF9F745009A0BF8 /* SimpleTasks.entitlements */,

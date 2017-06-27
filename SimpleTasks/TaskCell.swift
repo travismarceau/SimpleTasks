@@ -24,8 +24,8 @@ class TaskCell: UITableViewCell {
     }
 
     func updateUI(task: Task) {
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
+//        dateFormatter.dateStyle = .short
+//        dateFormatter.timeStyle = .short
         dateFormatter.dateFormat = "d/M/yy H:mm"
         let strDate = dateFormatter.string(from: task.realDate)
         taskDate.text = strDate
