@@ -52,8 +52,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 // Show initial tasks
                 func updateList() {
                     if let list = self.realm.objects(TaskList.self).first {
-                        print(list)
+//                        let sortedItems = List(list.items.sorted(byKeyPath: "realDate", ascending: true))
+//                        self.items = sortedItems
                         self.items = list.items
+                        if !self.realm.isInWriteTransaction {
+                            self.determineSortOrder()
+                        }
                     }
                     else {
                         if !self.realm.isInWriteTransaction {
@@ -147,14 +151,18 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func addButton(_ sender: Any) { add() }
     @IBOutlet weak var sortControl: UISegmentedControl!
     @IBAction func sortOrder(_ sender: Any) {
+        determineSortOrder()
+    }
+    
+    func determineSortOrder() {
         switch sortControl.selectedSegmentIndex {
         case 0: sort(sortBy: "realDate", asc: true)
-                    break
+            break
         case 1: sort(sortBy: "priority", asc: false)
-                    break
+            break
         case 2: sort(sortBy: "completed", asc: true)
-                    break
-            default: break
+            break
+        default: break
         }
     }
     
