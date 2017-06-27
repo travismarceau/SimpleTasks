@@ -51,16 +51,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 // Show initial tasks
                 func updateList() {
-                    //self.items.realm == nil,
                     if let list = self.realm.objects(TaskList.self).first {
-                        print("PASSED")
                         print(list)
                         self.items = list.items
                     }
                     else {
-                        print("FAILED")
-                        print(self.items.realm ?? "EMPTY")
-                        
                         if !self.realm.isInWriteTransaction {
                             try! self.realm.write {
                                 let list = TaskList()
@@ -106,13 +101,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
-            
             let item = items[indexPath.row]
             cell.updateUI(task: item)
             return cell
         } else {
-            
             return UITableViewCell()
         }
     }
@@ -150,8 +144,26 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    @IBAction func addButton(_ sender: Any) {
-        add()
+    @IBAction func addButton(_ sender: Any) { add() }
+    @IBOutlet weak var sortControl: UISegmentedControl!
+    @IBAction func sortOrder(_ sender: Any) {
+        switch sortControl.selectedSegmentIndex {
+        case 0: sort(sortBy: "realDate", asc: true)
+                    break
+        case 1: sort(sortBy: "priority", asc: false)
+                    break
+        case 2: sort(sortBy: "completed", asc: true)
+                    break
+            default: break
+        }
+    }
+    
+    func sort(sortBy: String, asc: Bool) {
+        if let list = self.realm.objects(TaskList.self).first {
+            try! list.realm?.write {
+                list.items.replaceSubrange(0..<list.items.count, with: List(list.items.sorted(byKeyPath: sortBy, ascending: asc)))
+            }
+        }
     }
     
     

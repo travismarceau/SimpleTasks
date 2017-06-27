@@ -17,7 +17,7 @@ class DetailVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
     private var _task: Task!
     
     let dateFormatter = DateFormatter()
-    let pickerData = [["High","Normal","Low"]]
+    let pickerData = [["!!! High !!!","!! Normal !!","! Low !"]]
     let priorityComponent = 0
     
     var task: Task {
@@ -42,17 +42,16 @@ class DetailVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
             toggle.setOn(false, animated: true)
         }
         
-        if task.priority != "" {
-            let initialIndex = pickerData[0].index(of: task.priority)
-            priorityPicker.selectRow(initialIndex!, inComponent: priorityComponent, animated: false)
+        if let initialIndex = pickerData[0].index(of: task.priority) {
+            priorityPicker.selectRow(initialIndex, inComponent: priorityComponent, animated: false)
         } else {
             priorityPicker.selectRow(1, inComponent: priorityComponent, animated: false)
         }
         
         datePicker.setDate(task.realDate, animated: true)
         
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
+//        dateFormatter.dateStyle = .short
+//        dateFormatter.timeStyle = .short
         dateFormatter.dateFormat = "d/M/yy H:mm"
 //        if let convertedStartDate = dateFormatter.date(from: task.date) {
 //            datePicker.setDate(convertedStartDate, animated: true)

@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TdV-qb-tyb" id="2lH-FO-6XD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="G8N-93-JiF">
@@ -93,6 +93,20 @@
                                             <action selector="addButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WK8-hQ-9Sr"/>
                                         </connections>
                                     </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="sortControl" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ceh-hO-ncF">
+                                        <rect key="frame" x="10" y="11" width="208" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <segments>
+                                            <segment title="Date"/>
+                                            <segment title="Priority"/>
+                                            <segment title="Status"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="sortOrder:" destination="BYZ-38-t0r" eventType="valueChanged" id="97i-Xq-Mr0"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -109,13 +123,18 @@
                             <constraint firstItem="LnN-jj-gzf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FJc-Tm-h5x"/>
                             <constraint firstAttribute="trailing" secondItem="Par-78-TUK" secondAttribute="trailing" id="Hbp-pq-UV8"/>
                             <constraint firstItem="LnN-jj-gzf" firstAttribute="top" secondItem="Par-78-TUK" secondAttribute="bottom" id="P8L-1C-81g"/>
+                            <constraint firstItem="Par-78-TUK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Qjl-kb-nEU"/>
                             <constraint firstItem="LnN-jj-gzf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ygw-1x-h4K"/>
                             <constraint firstItem="Par-78-TUK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cuF-0d-VEg"/>
+                            <constraint firstItem="LnN-jj-gzf" firstAttribute="top" secondItem="Par-78-TUK" secondAttribute="bottom" id="iZv-vu-jHG"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LnN-jj-gzf" secondAttribute="bottom" id="m0m-Xo-tmp"/>
+                            <constraint firstItem="Par-78-TUK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xtT-7z-RB3"/>
+                            <constraint firstAttribute="trailing" secondItem="Par-78-TUK" secondAttribute="trailing" id="z30-pw-itI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PtB-8x-pom"/>
                     <connections>
+                        <outlet property="sortControl" destination="Ceh-hO-ncF" id="UY2-2w-ngd"/>
                         <outlet property="tableView" destination="Par-78-TUK" id="eEq-2Z-ag1"/>
                         <segue destination="nnb-eA-MfM" kind="showDetail" identifier="DetailVC" id="eL0-AR-bd7"/>
                     </connections>
