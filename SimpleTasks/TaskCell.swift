@@ -10,8 +10,7 @@ import UIKit
 
 class TaskCell: UITableViewCell {
 
-    var tapAction: ((UITableViewCell) -> Void)?
-    
+    // labels and check mark within each table cell
     @IBOutlet weak var taskDate: UILabel!
     @IBOutlet weak var taskText: UILabel!
     @IBOutlet weak var checkImage: UIImageView!
@@ -20,12 +19,10 @@ class TaskCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    // write task values to labels and check mark
     func updateUI(task: Task) {
-//        dateFormatter.dateStyle = .short
-//        dateFormatter.timeStyle = .short
         dateFormatter.dateFormat = "d/M/yy H:mm"
         let strDate = dateFormatter.string(from: task.realDate)
         taskDate.text = strDate

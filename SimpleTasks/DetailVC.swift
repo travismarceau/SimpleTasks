@@ -4,6 +4,7 @@ import RealmSwift
 
 class DetailVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
     
+    // details page setup includes many little items / inputs
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var priorityLabel: UILabel!
     @IBOutlet weak var priorityPicker: UIPickerView!
@@ -28,6 +29,7 @@ class DetailVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
         }
     }
     
+    // on load, populate current task values
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,44 +51,46 @@ class DetailVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
         }
         
         datePicker.setDate(task.realDate, animated: true)
-        
-//        dateFormatter.dateStyle = .short
-//        dateFormatter.timeStyle = .short
-        dateFormatter.dateFormat = "d/M/yy H:mm"
-//        if let convertedStartDate = dateFormatter.date(from: task.date) {
-//            datePicker.setDate(convertedStartDate, animated: true)
-//        }
-        
         updateLabels()
     }
     
+    // update labels when new date is selected
     func datePickerChanged(datePicker:UIDatePicker) {
-        let strDate = dateFormatter.string(from: datePicker.date)
-        dateLabel.text = strDate
         updateLabels()
     }
     
+    // return number of picker items (always one here)
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return pickerData.count
     }
     
+    // return number of picker items (number of priority options)
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData[component].count
     }
     
+    // return name of specific row in picker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[priorityComponent][row]
     }
     
+    // update labels when a new row is selected
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         updateLabels()
     }
     
+    // refresh the labels with current picker values
     func updateLabels(){
         let priority = pickerData[priorityComponent][priorityPicker.selectedRow(inComponent: priorityComponent)]
         priorityLabel.text = priority
+        
+        dateFormatter.dateFormat = "d/M/yy H:mm"
+        let strDate = dateFormatter.string(from: datePicker.date)
+        dateLabel.text = strDate
     }
     
+    // execute completion on realm
+    // consider making this consistent with pickers -- update on change versus on save
     @IBAction func toggleCompleted(_ sender: Any) {
         let item = task
         try! item.realm?.write {
@@ -94,6 +98,7 @@ class DetailVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
         }
     }
     
+    // save the newly selected values to realm -- pop back to list view
     @IBAction func saveButton(_ sender: Any) {
         let priority = pickerData[priorityComponent][priorityPicker.selectedRow(inComponent: priorityComponent)]
         let inDate = datePicker.date

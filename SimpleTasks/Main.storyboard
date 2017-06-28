@@ -252,7 +252,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dateLabel" destination="DUO-jx-46F" id="Imu-Ew-XLd"/>
+                        <outlet property="dateLabel" destination="DUO-jx-46F" id="NA3-QN-cFO"/>
                         <outlet property="datePicker" destination="nmo-9w-5Gh" id="LWG-fr-ODw"/>
                         <outlet property="priorityLabel" destination="DWM-8L-1Bm" id="5aw-0d-uLV"/>
                         <outlet property="priorityPicker" destination="oHq-T2-Gw6" id="QBx-LJ-V6d"/>

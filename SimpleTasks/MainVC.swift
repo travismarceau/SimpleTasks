@@ -4,6 +4,8 @@ import RealmSwift
 
 // MARK: Model
 
+// Task list object to hold the collection of tasks
+// Allow for multiple task lists in future implementation
 final class TaskList: Object {
     dynamic var text = ""
     dynamic var id = ""
@@ -14,6 +16,7 @@ final class TaskList: Object {
     }
 }
 
+// task object declaration -- primary object in this app
 final class Task: Object {
     dynamic var text = ""
     dynamic var completed = false
@@ -31,11 +34,10 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var realm: Realm!
     
     func setupRealm() {
+        
+        // credentials for demo realm
         let username = "t@travismarceau.com"
         let password = "dgEB9Gjy9R8T"
-        
-//        let username = "travis"
-//        let password = "realm"
         
         SyncUser.logIn(with: .usernamePassword(username: username, password: password, register: false), server: URL(string: "http://192.241.211.145:9080")!) { user, error in
             guard let user = user else {
@@ -51,14 +53,17 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 // Show initial tasks
                 func updateList() {
+                    
+                    // if task lists exist in realm, use the first
+                    // do not update during active write transactions
                     if let list = self.realm.objects(TaskList.self).first {
-//                        let sortedItems = List(list.items.sorted(byKeyPath: "realDate", ascending: true))
-//                        self.items = sortedItems
                         self.items = list.items
                         if !self.realm.isInWriteTransaction {
                             self.determineSortOrder()
                         }
                     }
+                    // if no task list, populate realm with a base list
+                    // do not update during active write transactions
                     else {
                         if !self.realm.isInWriteTransaction {
                             try! self.realm.write {
@@ -106,6 +111,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // get a reusable cell - get the associated item - update cell content - return cell
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
             let item = items[indexPath.row]
             cell.updateUI(task: item)
@@ -115,12 +121,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    // move row from one position to another in realm
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         try! items.realm?.write {
             items.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
         }
     }
     
+    // delete task from realm list when appropriate UI action is taken
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             try! realm.write {
@@ -130,30 +138,29 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    // trigger segue to launch detail view of selected task
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
-        
         performSegue(withIdentifier: "DetailVC", sender: item)
     }
     
+    // segue validation of appropriate arguments
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let destination = segue.destination as? DetailVC {
-            
             if let taskSender = sender as? Task {
                 destination.task = taskSender
             }
-            
         }
-        
     }
     
+    // actions for add and segment selector buttons + outlet for segment selector
     @IBAction func addButton(_ sender: Any) { add() }
     @IBOutlet weak var sortControl: UISegmentedControl!
     @IBAction func sortOrder(_ sender: Any) {
         determineSortOrder()
     }
     
+    // determine which sort type was selected and call sort with appropriate parameters
     func determineSortOrder() {
         switch sortControl.selectedSegmentIndex {
         case 0: sort(sortBy: "realDate", asc: true)
@@ -166,6 +173,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    // re-write the entire list in realm according to sort parameters
+    // I do wonder if there is a better way to do this, and impact of larger list sizes
     func sort(sortBy: String, asc: Bool) {
         if let list = self.realm.objects(TaskList.self).first {
             try! list.realm?.write {
@@ -174,8 +183,10 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
-    // alert for new entry and write directly to server
+    // alert for new entry and write contents directly to server
+    // priority will be populated according to server function
+    // date will default to current datetime
+    // completed defaults to false
     func add() {
         let alertController = UIAlertController(title: "New Task", message: "Enter Task Name", preferredStyle: .alert)
         var alertTextField: UITextField!
@@ -188,6 +199,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             let items = self.items
             try! items.realm?.write {
+                // at has been made obsolete, as insertion will occur according to sort
                 items.insert(Task(value: ["text": text]), at: items.filter("completed = false").count)
             }
         })
