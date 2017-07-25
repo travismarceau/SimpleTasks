@@ -114,6 +114,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // get a reusable cell - get the associated item - update cell content - return cell
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell {
             let item = items[indexPath.row]
+            print(indexPath.row)
             cell.updateUI(task: item)
             return cell
         } else {

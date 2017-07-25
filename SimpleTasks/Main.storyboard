@@ -117,18 +117,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="LnN-jj-gzf" secondAttribute="trailing" id="2VF-c0-7Za"/>
-                            <constraint firstItem="LnN-jj-gzf" firstAttribute="top" secondItem="Par-78-TUK" secondAttribute="bottom" id="79n-OD-biZ"/>
                             <constraint firstItem="Par-78-TUK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EMv-OC-2Hq"/>
-                            <constraint firstAttribute="trailing" secondItem="LnN-jj-gzf" secondAttribute="trailing" id="EU5-N5-rvP"/>
                             <constraint firstItem="LnN-jj-gzf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FJc-Tm-h5x"/>
-                            <constraint firstAttribute="trailing" secondItem="Par-78-TUK" secondAttribute="trailing" id="Hbp-pq-UV8"/>
-                            <constraint firstItem="LnN-jj-gzf" firstAttribute="top" secondItem="Par-78-TUK" secondAttribute="bottom" id="P8L-1C-81g"/>
                             <constraint firstItem="Par-78-TUK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Qjl-kb-nEU"/>
-                            <constraint firstItem="LnN-jj-gzf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ygw-1x-h4K"/>
-                            <constraint firstItem="Par-78-TUK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cuF-0d-VEg"/>
                             <constraint firstItem="LnN-jj-gzf" firstAttribute="top" secondItem="Par-78-TUK" secondAttribute="bottom" id="iZv-vu-jHG"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LnN-jj-gzf" secondAttribute="bottom" id="m0m-Xo-tmp"/>
-                            <constraint firstItem="Par-78-TUK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xtT-7z-RB3"/>
                             <constraint firstAttribute="trailing" secondItem="Par-78-TUK" secondAttribute="trailing" id="z30-pw-itI"/>
                         </constraints>
                     </view>
